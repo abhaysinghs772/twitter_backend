@@ -9,7 +9,7 @@ export function authMiddleware(
   try {
     const token = req.header('authorization');
     // Check if token is missing
-    if (!token || token.startsWith('Bearer ')) {
+    if (!token || !token.startsWith('Bearer ')) {
       return res.status(401).json({ message: 'Authorization denied' });
     }
 

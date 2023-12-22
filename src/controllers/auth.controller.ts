@@ -10,7 +10,7 @@ export async function signUp(req: Request, res: Response) {
 
     // check whether user already exist in db or not if not then save it in Db
     const userExist = await Usermodel.findOne({
-      email: incomingBody.userName,
+      userName: incomingBody.userName,
     });
 
     if (userExist) {

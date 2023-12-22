@@ -1,6 +1,6 @@
 # Project Name
 
-this my own Node.js express.js typeScript and mongoDb template.
+Twitter backend assignment.
 
 ## Prerequisites
 
@@ -16,22 +16,24 @@ To set up this project locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/abhaysinghs772/node_express_typescript_starter_template
+   git clone https://github.com/abhaysinghs772/twitter_backend.git
 
 2. go to the cloned project. 
     ```bash
-    cd node_express_typescript_starter_template
+    cd twitter_backend
 
 3. Install dependencies:
     ```bash
     npm install
 
-4. navigate to app.ts and change the value of uri to your mongodb atlas credentials at line num 25.
-
 5. run the project 
     ```bash
     npm run:start
 
-6. In order to test/check task's api first signup and then do login by their respective apis and then use the token as : 
+6. In order to test/check all apis, first signup and then do login by their respective apis and then use the token as : 
     ```bash
     authorication: Bearear <your_token>
+
+7. please find the .env file in the mail sent to you
+
+8. please find all the api collection in the root of this project

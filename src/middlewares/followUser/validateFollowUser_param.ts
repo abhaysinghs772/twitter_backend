@@ -8,7 +8,7 @@ export async function validatePathParam(
 ) {
   const paramSchema = Joi.string().required();
 
-  const { error } = paramSchema.validate(req.body);
+  const { error } = paramSchema.validate(req.params.followUserId);
 
   if (error) {
     // If validation fails, send an error response

@@ -7,8 +7,8 @@ export async function createTweetBody(
   next: NextFunction,
 ) {
   const validateTweetBodySchema = Joi.object({
-    title: Joi.string().min(50).required(), // max 50 characters for the title/heading
-    description: Joi.string().min(150).max(500),
+    title: Joi.string().min(0).max(50).required(), // max 50 characters for the title/heading
+    description: Joi.string().min(0).max(500),
   });
 
   const { error } = validateTweetBodySchema.validate(req.body);
