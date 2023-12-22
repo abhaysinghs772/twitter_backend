@@ -10,10 +10,30 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    followers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+      },
+    ],
+    following: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: false,
+      },
+    ],
+    tweets: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Tweet',
+        required: false,
+      },
+    ],
   },
   { timestamps: true },
 ); // timestamps to add created_at and updated_at
 
-const Usermodel = mongoose.models.User || mongoose.model('User', userSchema);
-
-export default Usermodel;
+export const Usermodel =
+  mongoose.models.User || mongoose.model('User', userSchema);

@@ -9,7 +9,7 @@ import mongoose from 'mongoose';
 dotenv.config();
 
 /* ROUTES */
-import { authRoute } from './routes/index';
+import { authRoute, tweetRoute, followRoute } from './routes';
 
 /* APP */
 const app = express();
@@ -18,7 +18,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+/* CONSUMING ALL ROUTES */
 app.use(authRoute);
+app.use(tweetRoute);
+app.use(followRoute);
 
 /* mongoDB connection */
 // chnage this string to your own db's connection string
@@ -29,6 +33,7 @@ async function connectDB() {
     console.log('Connected to MongoDB Atlas');
   } catch (error) {
     console.error('Error connecting to MongoDB Atlas:', error);
+    process.exit(0); // for clean exit if there would be any exception
   }
 }
 
