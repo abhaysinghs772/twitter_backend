@@ -7,10 +7,11 @@ export function signUpValidator(
   next: NextFunction,
 ): void | Response {
   const signUpSchema = Joi.object({
-    phone_number: Joi.string().pattern(new RegExp('^[0-9]{10}$')).required(),
+    userName: Joi.string().required(),
+    password: Joi.string().min(8).required(),
   });
 
-  const { error, value } = signUpSchema.validate(req.body);
+  const { error } = signUpSchema.validate(req.body);
 
   if (error) {
     // If validation fails, send an error response

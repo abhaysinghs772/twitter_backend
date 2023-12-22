@@ -9,16 +9,14 @@ export function authMiddleware(
   try {
     const token = req.header('authorization');
     // Check if token is missing
-    if (!token) {
+    if (!token || token.startsWith('Bearer ')) {
       return res.status(401).json({ message: 'Authorization denied' });
     }
 
-    const decoded = jwt.verify(
-      token?.split(' ')[1],
-      'some-secret-encrypeted',
-    ) as JwtPayload;
+    const secret = process.env.JWT_SECRET as string;
+    const decoded = jwt.verify(token?.split(' ')[1], secret) as JwtPayload;
 
-    // req.user = decoded.userId; // change this in future or create custom.d.ts and pass it in tsconfig
+    req.user = decoded.user;
     next();
   } catch (error) {
     console.error(error);

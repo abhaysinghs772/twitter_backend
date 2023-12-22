@@ -7,11 +7,11 @@ export async function logInValidator(
   next: NextFunction,
 ) {
   const logInSchema = Joi.object({
-    email: Joi.string().required(),
-    password: Joi.string().min(6).required(),
+    userName: Joi.string().required(),
+    password: Joi.string().min(8).required(),
   });
 
-  const { error, value } = logInSchema.validate(req.body);
+  const { error } = logInSchema.validate(req.body);
 
   if (error) {
     // If validation fails, send an error response

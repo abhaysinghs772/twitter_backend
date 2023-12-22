@@ -1,10 +1,8 @@
-import mongoose from 'mongoose';
-
-const { Schema, model } = mongoose;
+import mongoose, { Schema } from 'mongoose';
 
 const userSchema = new Schema(
   {
-    name: {
+    userName: {
       type: String,
       required: true,
     },
@@ -12,19 +10,10 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    phone_number: {
-      type: String,
-      required: true,
-    },
   },
   { timestamps: true },
 ); // timestamps to add created_at and updated_at
 
-const Usermodel = model('User', userSchema);
+const Usermodel = mongoose.models.User || mongoose.model('User', userSchema);
 
 export default Usermodel;

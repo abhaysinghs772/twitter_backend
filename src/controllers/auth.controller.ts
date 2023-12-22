@@ -14,8 +14,7 @@ export async function signUp(req: Request, res: Response) {
 
     // check whether user already exist in db or not if not then save it in Db
     const userExist = await Usermodel.findOne({
-      email: incomingBody.email,
-      phone_number: incomingBody.phone_number,
+      email: incomingBody.userName,
     });
 
     if (userExist) {
@@ -36,10 +35,10 @@ export async function signUp(req: Request, res: Response) {
 
 export async function logIn(req: Request, res: Response) {
   try {
-    const { email, password } = req.body;
+    const { userName, password } = req.body;
 
     // Check if the user exists
-    const user = await Usermodel.findOne({ email: email });
+    const user = await Usermodel.findOne({ userName: userName });
     if (!user) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
@@ -50,13 +49,10 @@ export async function logIn(req: Request, res: Response) {
     }
 
     // sign token
-    const token = await jwt.sign(
-      { userId: user._id },
-      'some-secret-encrypeted',
-      {
-        expiresIn: '4h',
-      },
-    );
+    const secret = process.env.JWT_SECRET as string;
+    const token = await jwt.sign({ user: user }, secret, {
+      expiresIn: '4h',
+    });
 
     res.status(200).json({ message: 'successfully logged in', token });
   } catch (error) {

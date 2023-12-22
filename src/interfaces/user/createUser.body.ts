@@ -1,6 +1,4 @@
 export interface createUserBody {
-  name: string | null;
+  userName: string;
   password: string;
-  email: string;
-  phone_number: string;
 }

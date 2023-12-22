@@ -22,7 +22,7 @@ app.use(authRoute);
 
 /* mongoDB connection */
 // chnage this string to your own db's connection string
-const uri = process.env.MONGO_URI;
+const uri = process.env.MONGO_URI as string;
 async function connectDB() {
   try {
     await mongoose.connect(uri);
